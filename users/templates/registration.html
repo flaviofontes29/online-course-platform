@@ -9,7 +9,35 @@ Cadastro
 {% block 'body' %}
 
 <div class="container">
+    {% if status == '1' %}
+    <div class="alert alert-danger" role="alert">
+        E-mail já cadastrado no sistema
+    </div>
+    {% endif %}
 
+    {% if status == '2' %}
+    <div class="alert alert-danger" role="alert">
+        Nome e Email não podem ser vazios
+    </div>
+    {% endif %}
+
+    {% if status == '3' %}
+    <div class="alert alert-danger" role="alert">
+        Senha deve conter no mínimo 8 caracteres
+    </div>
+    {% endif %}
+
+    {% if status == '4' %}
+    <div class="alert alert-danger" role="alert">
+        Erro interno do sistema
+    </div>
+    {% endif %}
+
+    {% if status == '0' %}
+    <div class="alert alert-success" role="alert">
+        Cadastro confirmado com sucesso
+    </div>
+    {% endif %}
     <div class="row">
         <div class="col-md-3">
 
@@ -18,17 +46,18 @@ Cadastro
             <br>
             <h1>Cadastre-se</h1>
             <hr>
-            <form method="POST" action="#">
+            <form method="POST" action="{% url 'valid_registry'%}">
+                {% csrf_token %}
                 <label>Digite seu nome:</label>
-                <input class="form-control" type="text" placeholder="Nome..." name="name">
+                <input class="form-control" type="text" placeholder="Nome..." name="name" required>
                 <br>
                 <label>Digite seu Email:</label>
-                <input class="form-control" type="text" placeholder="E-mail" name="email">
+                <input class="form-control" type="text" placeholder="E-mail" name="email" required>
                 <br>
                 <label>Digite seu senha:</label>
-                <input class="form-control" type="password" placeholder="Senha" name="password">
+                <input class="form-control" type="password" placeholder="Senha" name="password" required>
                 <br>
-                <input class="btn btn-success btn-lg" type="submit">
+                <input class="btn btn-success btn-lg" type="submit" value="Cadastrar">
                 <a href="#" class="btn btn-info btn-lg">Logar</a>
             </form>
         </div>
