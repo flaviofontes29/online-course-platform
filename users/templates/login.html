@@ -1,6 +1,38 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+<!--Start of block title -->
+{% block 'title'%}
+Logar
 
-{%block 'content' %}
-<h1>Teste html</h1>
-<button>Entrar</button>
+{% endblock%}
+<!--End of block body -->
+<!--Start of block body -->
+{% block 'body' %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md">
+            <br>
+            <h1>Login</h1>
+            <hr>
+            <form method="POST" action="#"><!--Start form -->
+                <label>Digite seu Email:</label>
+                <input class="form-control" type="text" placeholder="E-mail" name="email">
+                <br>
+                <label>Digite seu senha:</label>
+                <input class="form-control" type="password" placeholder="Senha" name="password">
+                <br>
+                <input class="btn btn-success btn-lg" type="submit" value="Entrar" name="login">
+                <a href="#" class="btn btn-info btn-lg">Cadastre-se</a>
+            </form><!--End form -->
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+</div>
+<!--End of block body -->
 {% endblock %}
