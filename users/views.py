@@ -52,8 +52,7 @@ def valid_login(request):
         return redirect("/auth/login/?status=1")
     elif len(users) > 0:
         request.session["user"] = users[0].id
-        return HttpResponse("Entrou")
-    return HttpResponse(users)
+        return redirect("/home")
 
 
 def logout(request):

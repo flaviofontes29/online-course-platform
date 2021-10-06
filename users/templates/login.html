@@ -13,6 +13,11 @@ Logar
             E-mail ou senha inválido!
         </div>
     {%endif%}
+    {%if status == '2'%}
+        <div class="alert alert-danger" role="alert">
+            Por favor efetuar o login.
+        </div>
+    {%endif%}
     <div class="row">
         <div class="col-md-3">
 
