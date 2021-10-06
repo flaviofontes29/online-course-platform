@@ -1,11 +1,14 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from . import Courses
 
 
 def home(request):
     if request.session.get("user"):
-        pass
-        pass
-        return HttpResponse("Estou na pagina home")
+        course = Courses.objects.all()
+        request_user = request.session.get("user")
+        return render(
+            request, "home.html", {"course": course, "request_usuario": request_user}
+        )
     else:
-        return redirect("/auth/login?status=2")
+        return redirect("/auth/login/?status=2")

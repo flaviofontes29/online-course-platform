@@ -10,7 +10,6 @@ class Courses(models.Model):
         return self.name
 
 
-"""
 class Classes(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -19,4 +18,3 @@ class Classes(models.Model):
 
     def __str__(self) -> str:
         return self.name
-"""
