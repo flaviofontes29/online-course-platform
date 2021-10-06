@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from . import Courses
+from .models import Courses
 
 
 def home(request):
