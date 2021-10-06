@@ -6,12 +6,18 @@ import hashlib
 
 
 def registration(request):
+    if request.session.get("user"):
+        redirect("/home")
+
     status = request.GET.get("status")
     return render(request, "registration.html", {"status": status})
 
 
 def login(request):
-    return render(request, "login.html")
+    if request.session.get("user"):
+        redirect("/home")
+    status = request.GET.get("status")
+    return render(request, "login.html", {"status": status})
 
 
 def valid_registry(request):
@@ -35,3 +41,21 @@ def valid_registry(request):
     except Exception:
         return redirect("/auth/cadastro/?status=4")
     return redirect("/auth/registration/?status=0")
+
+
+def valid_login(request):
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+    password = hashlib.sha256(password.encode()).hexdigest()
+    users = User.objects.filter(email=email).filter(password=password)
+    if len(users) == 0:
+        return redirect("/auth/login/?status=1")
+    elif len(users) > 0:
+        request.session["user"] = users[0].id
+        return HttpResponse("Entrou")
+    return HttpResponse(users)
+
+
+def logout(request):
+    request.session.flush()
+    return redirect("/auth/login")
