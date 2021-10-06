@@ -18,3 +18,11 @@ def course(request, id):
     id_course = Courses.objects.get(id=id)
     classes = Classes.objects.filter(course=id_course)
     return render(request, "course.html", {"classes": classes})
+
+
+def class_(request, id):
+    if request.session.get("user"):
+        class_ = Classes.objects.get(id=id)
+        return render(request, "class.html", {"class": class_})
+    else:
+        return redirect("/auth/login/?status=2")

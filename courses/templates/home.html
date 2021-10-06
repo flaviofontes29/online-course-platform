@@ -20,7 +20,7 @@ Home
                   <div class="card-body">
                     <h5 class="card-title">{{i.name}}</h5>
                     <p class="card-text">{{i.description}}</p>
-                    <a href="#" class="btn btn-primary">Acessar</a>
+                    <a href="{% url 'course' i.id %}" class="btn btn-primary">Acessar</a>
                   </div>
                 </div>
           </div>
